@@ -22,14 +22,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //
+Route::group(['prefix' => 'field'], function(){
+Route::post("/create", [MainController::class, "CreateField"]);
+Route::get("/list", [MainController::class, "ListField"]);
+});
 
-Route::post("field/create", [MainController::class, "CreateField"]);
-Route::get("field/list", [MainController::class, "ListField"]);
-
-Route::post("animal/create-one", [MainController::class, "CreateOneAnimal"]);
-Route::post("animal/create-random", [MainController::class, "CreateRandomAnimals"]);
+Route::group(['prefix' => 'animal'], function(){
+Route::post("/create-one", [MainController::class, "CreateOneAnimal"]);
+Route::post("/create-random", [MainController::class, "CreateRandomAnimals"]);
+});
 
 Route::get("update", [MainController::class, "Update"]);
 Route::get("battlefield", [MainController::class, "Battlefield"]);
 
-Route::get("showme", [MainController::class, "ShowMe"]);

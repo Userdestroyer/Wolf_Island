@@ -29,7 +29,7 @@ class MainController extends Controller
                     
     }
 
-    //POST
+    //POST - CREATES FIELD
     public function CreateField(Request $request) {
 
         //validation
@@ -66,7 +66,7 @@ class MainController extends Controller
 
     }
 
-    //POST
+    //POST - CREATES ONE ANIMAL
     public function CreateOneAnimal(Request $request) {
 
         //validation
@@ -114,7 +114,7 @@ class MainController extends Controller
         
     }
 
-    //POST
+    //POST - CREATES RANDOM ANIMALS
     public function CreateRandomAnimals(Request $request) {
         //validation
         if(!empty(DB::table('fields')->count())) {
@@ -151,7 +151,7 @@ class MainController extends Controller
         }
     }
 
-    //GET
+    //GET - UPDATES ALL MOVEMENTS AND ACTIONS
     public function Update() {
 
         if(!empty(DB::table('animals')->count())) {
@@ -270,7 +270,7 @@ class MainController extends Controller
 
     }
 
-    //GET
+    //GET - SHOWS FIELD
     public function ListField() {
         $field = Field::get();
 
@@ -281,20 +281,14 @@ class MainController extends Controller
         ], 200);
     }
 
+    //GET - SHOWS ALL ANIMAL POSITIONS AND STATES
     public function Battlefield() {
         $animal = Animal::get();
-
         return response()->json([
             "status" => 1,
             "message" => "Listing battlefield",
             "data" => $animal
         ], 200);
-    }
-
-    public function ShowMe() {
-        for ($i = 0; $i < 8; $i++) {
-            echo $i . " \n";
-        }
     }
 
 }
